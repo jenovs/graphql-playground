@@ -29,7 +29,7 @@ const TodosList = ({ data: { loading, error, todos } }) => {
 const TodosListWithData = graphql(todosListQuery, {
   options: {
     // refetch queries after set timeout
-    pollInterval: 5000,
+    // pollInterval: 5000,
   },
 })(TodosList);
 
