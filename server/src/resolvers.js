@@ -11,8 +11,17 @@ const todos = [
   },
 ];
 
+let nextId = 3;
+
 export const resolvers = {
   Query: {
     todos: () => todos,
+  },
+  Mutation: {
+    addTodo: (root, { name }) => {
+      const newTodo = { id: nextId++, name, completed: false };
+      todos.push(newTodo);
+      return newTodo;
+    },
   },
 };

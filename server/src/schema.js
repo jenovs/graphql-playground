@@ -6,12 +6,16 @@ import { resolvers } from './resolvers';
 const typeDefs = gql`
   type Todo {
     id: ID!
-    name: String
+    name: String!
     completed: Boolean
   }
 
   type Query {
     todos: [Todo]
+  }
+
+  type Mutation {
+    addTodo(name: String!): Todo
   }
 `;
 
