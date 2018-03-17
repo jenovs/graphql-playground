@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 import ApolloClient from 'apollo-client';
-import { graphql, ApolloProvider } from 'react-apollo';
-import gql from 'graphql-tag';
+import { ApolloProvider } from 'react-apollo';
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
-import { SchemaLink } from 'apollo-link-schema';
 import { typeDefs } from './schema';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
