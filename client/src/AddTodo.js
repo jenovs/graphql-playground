@@ -27,6 +27,7 @@ const addTodoMutation = gql`
     addTodo(name: $name) {
       id
       name
+      completed
     }
   }
 `;
