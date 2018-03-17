@@ -10,6 +10,8 @@ import { typeDefs } from './schema';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+import TodosListWithData from './TodosListWithData';
+
 import logo from './logo.png';
 import './App.css';
 
@@ -23,25 +25,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link,
 });
-
-const todosListQuery = gql`
-  query todosListQuery {
-    todos {
-      id
-      name
-      completed
-    }
-  }
-`;
-
-const TodosList = ({ data: { loading, error, todos } }) => {
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error.message}</p>;
-
-  return <ul>{todos.map(todo => <li key={todo.id}>{todo.name}</li>)}</ul>;
-};
-
-const TodosListWithData = graphql(todosListQuery)(TodosList);
 
 class App extends Component {
   render() {
