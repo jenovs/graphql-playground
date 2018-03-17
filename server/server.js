@@ -10,6 +10,11 @@ const app = express();
 
 app.use('*', cors({ origin: 'http://localhost:3000' }));
 
+app.use('*', (req, res, next) => {
+  console.log('Request to the server');
+  next();
+});
+
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // mongoose.connect('mongodb://localhost/graphqlPlayground');
