@@ -14,6 +14,12 @@ export const todosListQuery = gql`
   }
 `;
 
+const styles = {
+  optimistic: {
+    color: '#aaa',
+  },
+};
+
 const TodosList = ({ data: { loading, error, todos } }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -21,7 +27,13 @@ const TodosList = ({ data: { loading, error, todos } }) => {
   return (
     <React.Fragment>
       <AddTodo />
-      <ul>{todos.map(todo => <li key={todo.id}>{todo.name}</li>)}</ul>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id} style={todo.id < 0 ? styles.optimistic : null}>
+            {todo.name}
+          </li>
+        ))}
+      </ul>
     </React.Fragment>
   );
 };

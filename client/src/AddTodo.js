@@ -11,7 +11,20 @@ const AddTodo = ({ mutate }) => {
     console.log(input);
     mutate({
       variables: { name: input.value },
-      refetchQueries: [{ query: todosListQuery }],
+      optimisticResponse: {
+        addTodo: {
+          id: Math.round(Math.random() * -1000),
+          name: input.value,
+          completed: false,
+          __typename: 'Todo',
+        },
+      },
+      update: (store, { data: { addTodo } }) => {
+        const data = store.readQuery({ query: todosListQuery });
+        data.todos.push(addTodo);
+        store.writeQuery({ query: todosListQuery, data });
+      },
+      // refetchQueries: [{ query: todosListQuery }],
     }).then(() => (input.value = ''));
   };
 
