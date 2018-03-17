@@ -8,7 +8,7 @@ const AddTodo = ({ mutate }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const input = e.target.querySelector('input');
-    console.log(input);
+
     mutate({
       variables: { name: input.value },
       optimisticResponse: {
@@ -44,4 +44,5 @@ const addTodoMutation = gql`
     }
   }
 `;
+
 export default graphql(addTodoMutation)(AddTodo);
