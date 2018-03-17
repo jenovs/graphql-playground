@@ -5,7 +5,8 @@ import { ApolloProvider } from 'react-apollo';
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { typeDefs } from './schema';
-import { HttpLink } from 'apollo-link-http';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import TodosListWithData from './TodosListWithData';
@@ -15,9 +16,18 @@ import './App.css';
 
 const schema = makeExecutableSchema({ typeDefs });
 // addMockFunctionsToSchema({ schema });
-const link = new HttpLink({
+const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
+
+const delay = () =>
+  new Promise(resolve => {
+    setTimeout(resolve, 500);
+  });
+
+const addLatency = setContext(operation => delay());
+
+const link = addLatency.concat(httpLink);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
