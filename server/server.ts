@@ -1,13 +1,13 @@
-const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
-// const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from 'express';
+import { ApolloServer, gql } from 'apollo-server-express';
+// import bodyParser from 'body-parser';
 // import mongoose from 'mongoose';
 
-const { typeDefs } = require('./src/schema');
-const { resolvers } = require('./src/resolvers');
+import { typeDefs } from './src/schema';
+import { resolvers } from './src/resolvers';
 
 const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -20,13 +20,6 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
-
-app.use('*', cors({ origin: 'http://localhost:3000' }));
-
-app.use('*', (req, res, next) => {
-  console.log('Request to the server');
-  next();
-});
 
 // mongoose.connect('mongodb://localhost/graphqlPlayground');
 //
