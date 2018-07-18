@@ -19,7 +19,7 @@ const resolvers = {
     todos: () => todos,
   },
   Mutation: {
-    addTodo: (root, { name }) => {
+    addTodo: ({}, { name }: { name: string }) => {
       const newTodo = { id: nextId++, name, completed: false };
       todos.push(newTodo);
       return newTodo;

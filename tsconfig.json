@@ -4,7 +4,11 @@
     "allowJs": true,
     "target": "es5",
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false
   },
   "include": ["./server/**/*"]
 }
