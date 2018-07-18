@@ -13,7 +13,8 @@ const todos = [
 
 let nextId = 3;
 
-export const resolvers = {
+// retrieve all todos from todos array
+const resolvers = {
   Query: {
     todos: () => todos,
   },
@@ -25,3 +26,5 @@ export const resolvers = {
     },
   },
 };
+
+module.exports = { resolvers };

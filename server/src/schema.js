@@ -1,7 +1,4 @@
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
-import gql from 'graphql-tag';
-
-import { resolvers } from './resolvers';
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Todo {
@@ -19,7 +16,4 @@ const typeDefs = gql`
   }
 `;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-// addMockFunctionsToSchema({ schema });
-
-export { schema };
+module.exports = { typeDefs };
